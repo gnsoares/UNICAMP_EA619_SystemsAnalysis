@@ -27,18 +27,14 @@ maxes_t = arrayfun(@(x) t(x), maxes_index);
 t_max = maxes_t(M_p_max_index);
 
 % find rising time
-bigger_than_final = find(y(:, M_p_max_index) >= final);
+y_max = y(:, M_p_max_index);
+bigger_than_final = find(y_max >= final);
 t_s = t(bigger_than_final(1));
 
 % get accomodation time
-t_a = inf;
-y_max = y(:, M_p_max_index);
-for i = length(y_max):-1:1
-    if abs((y_max(i) - final) / final) >= 0.02
-        t_a = t(i);
-        break;
-    end
-end
+percentage_of_final = abs((y_max - final) / final);
+bigger_than_2percent = find(percentage_of_final >= 0.02);
+t_a = t(bigger_than_2percent(end));
 
 % find values of p such that overshoot <= 0.07
 interval = find(0.01 < M_p_arr <= 0.07);
@@ -47,7 +43,7 @@ p_dot7_last = p(interval(end));
 
 % transfer function
 numerator = 18;
-denominator = [1, 2 + 6 * p_dot7_first, 9 + 12 * p_dot7_first, 18];
+denominator = [1, 2 + 6 * p_dot7_first, 9 + 12 * p_dot7_first, 18, 0];
 poles = pole(tf(numerator, denominator));
 
 % find values of p that have no overshoot
