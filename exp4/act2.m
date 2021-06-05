@@ -13,12 +13,12 @@ sol_nonlinear_piover10 = ode45(@(t, y) [y(2), -g/l * cos(y(1)) * y(1)].', t, [pi
 sol_linear_piover10 = ode45(@(t, y) [y(2), -g/l * y(1)].', t, [pi/10 0], options);
 
 % generate video
-videoSimple(sol_nonlinear_piover10.x, sol_nonlinear_piover10.y(1, :), sol_linear_piover10.y(1, :), 10, l, 'pendSimples_piover10');
+% videoSimple(sol_nonlinear_piover10.x, sol_nonlinear_piover10.y(1, :), sol_linear_piover10.y(1, :), 10, l, 'pendSimples_piover10');
 
 % generate video for (pi/4, 0)
 sol_nonlinear_piover4 = ode45(@(t, y) [y(2), -g/l * cos(y(1)) * y(1)].', t, [pi/4 0], options);
 sol_linear_piover4 = ode45(@(t, y) [y(2), -g/l * y(1)].', t, [pi/4 0], options);
-videoSimple(sol_nonlinear_piover4.x, sol_nonlinear_piover4.y(1, :), sol_linear_piover4.y(1, :), 10, l, 'pendSimples_piover4');
+% videoSimple(sol_nonlinear_piover4.x, sol_nonlinear_piover4.y(1, :), sol_linear_piover4.y(1, :), 10, l, 'pendSimples_piover4');
 
 % generate phase diagram
 figure();

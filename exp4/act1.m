@@ -37,7 +37,7 @@ bigger_than_2percent = find(percentage_of_final >= 0.02);
 t_a = t(bigger_than_2percent(end));
 
 % find values of p such that overshoot <= 0.07
-interval = find(0.01 < M_p_arr <= 0.07);
+interval = find(M_p_arr <= 0.07 & M_p_arr > 0.01);
 p_dot7_first = p(interval(1));
 p_dot7_last = p(interval(end));
 
